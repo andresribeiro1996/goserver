@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Go client</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script>
+            let socket = new WebSocket("ws://fa26edeab45a/ws")
+            console.log("Attempting websocket connection")
+            console.log(socket)
+            socket.onopen = () => {
+                console.log("Successfully connected")
+                socket.send("Hi from the go client!")
+            }
+
+            socket.onclose = (event) => {
+                console.log("Socket closed connection: ", event)
+            }
+
+            socket.onmessage = (msg) => {
+                console.log("on message: ", msg)
+            }
+
+            socket.onerror = (err) => {
+                console.log("Socket error: ", err)
+            }
+        </script>
+        
+        
+    </body>
+</html>
